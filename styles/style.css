@@ -1,0 +1,192 @@
+@font-face {
+    font-family: 'Jura';
+    src: url(../fonts/Jura/Jura.ttf);
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: 'Jura';
+    src: url(../fonts/Jura/Jura.ttf);
+    font-weight: 700;
+}
+
+header, footer {
+    font-family: 'Jura', arial;
+}
+
+footer > h5 {
+    font-weight: 700;
+}
+
+.svg-icon {
+    width: 20px;
+    height: 18px;
+}
+  
+.svg-icon path,
+.svg-icon polygon,
+.svg-icon rect {
+    fill: var(--bs-gray-800);
+}
+
+a.bg-danger > .svg-icon path,
+.svg-icon polygon,
+.svg-icon rect {
+    fill: var(--bs-white);
+} 
+  
+.svg-icon circle {
+    stroke: var(--bs-yellow);
+    stroke-width: 1;
+}
+
+td, th {
+    vertical-align: middle;
+}
+
+a.action-link {
+    line-height: 1.2em;
+}
+
+a.action-link:hover {
+    opacity: 0.8;
+}
+
+.navbar-brand {
+    padding-bottom: 0;
+}
+
+.navbar-brand:hover {
+    opacity: 0.88;
+}
+
+ul.about-list {
+    list-style: decimal-leading-zero;
+    font-size: 19px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.nav-link {
+    color: var(--bs-dark-gray);
+}
+
+li > a.nav-link {
+    white-space: nowrap;
+}
+
+.nav-link.dark {
+    color: var(--bs-gray-200);
+    font-size: 1.2em;
+}
+
+.nav-link:focus, .nav-link:hover, .nav-link.active {
+    color: var(--bs-yellow);
+}
+
+form > button.btn.btn-warning {
+    padding: 0.75em;
+    font-weight: 500;
+}
+
+
+/* Слайдер катрочки */
+.image-slider {
+    position: relative;
+}
+
+.image-slider__image {
+    position: absolute;
+    width: 100%;
+    height: 225px;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    opacity: 0;
+    transition: opacity 0.7s;
+}
+
+.image-slider__image.active {
+    opacity: 1;
+    transition: opacity 0.7s;
+}
+
+.card.ticket > div.card-body {
+    margin-top: 225px;
+}
+
+.card-title h5 {
+    color: var(--bs-gray-dark);
+    font-size: 2.2em;
+    font-weight: 200;
+    margin-bottom: 0.33em;
+}
+
+.card-title h5::after {
+    content: '\2022';
+    padding-left: 0.2em;
+    color: var(--bs-yellow);
+    display: none;
+}
+
+.card-title h5:hover::after {
+    display: inline-block;
+}
+
+p.card-text.ticket {
+    margin-bottom: 1.5em;
+}
+
+span.text-muted.address {
+    width: 60%;
+}
+
+div.card-footer {
+    background: var(--bs-yellow)
+}
+
+div.card-footer:hover {
+    opacity: 0.8;
+}
+
+div.card-footer > a.ticket-link {
+    padding: 0.67em;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    color: var(--bs-gray-dark);
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    text-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+}
+
+.card-footer a.ticket-link:hover {
+    color: var(--bs-white);
+    text-decoration: underline;
+}
+
+span.ticket-category {
+    padding: 0.2em 0.67em;
+    border: 1px solid var(--bs-yellow);;
+    border-radius: 5px;
+    width: max-content;
+}
+
+span.ticket-category+span.ticket-category {
+    margin-left: 5px;
+}
+
+span.ticket-category:hover {
+    color: var(--bs-gray-dark);
+    border-color: var(--bs-orange);
+}
+
+a.author-name {
+    color: var(--bs-gray-800);
+}
+
+a.author-name:hover {
+    text-decoration: underline;
+}
