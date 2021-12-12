@@ -4,18 +4,8 @@
     font-weight: 400;
 }
 
-@font-face {
-    font-family: 'Jura';
-    src: url(../fonts/Jura/Jura.ttf);
-    font-weight: 700;
-}
-
 header, footer {
-    font-family: 'Jura', arial;
-}
-
-footer > h5 {
-    font-weight: 700;
+    font-family: 'Jura';
 }
 
 .svg-icon {
@@ -82,8 +72,19 @@ li > a.nav-link {
     font-size: 1.2em;
 }
 
-.nav-link:focus, .nav-link:hover, .nav-link.active {
-    color: var(--bs-yellow);
+.nav-link:focus, .nav-link:hover, .nav-link.active, a.dropdown-item:hover {
+    background-color: #ffc324 !important;
+    color: var(--bs-gray-dark) !important;
+
+}
+
+.nav-link.sidebar,
+a.dropdown-toggle {
+    border-radius: 3px;
+}
+
+.nav-link.sidebar:hover {
+    background-color: rgba(255, 187, 0, 0.75) !important;
 }
 
 form > button.btn.btn-warning {

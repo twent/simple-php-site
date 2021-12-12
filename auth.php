@@ -6,7 +6,6 @@ $modalSuccessMessages = [];
 if (!empty($_POST)) {
     $login = trim($_POST['login']);
     $password = trim($_POST['password']);
-    $cockie = trim($_POST['cookie']);
 
     if (!$login) {
         $modalErrorMessages[] = 'Введите ваш логин в соответсвующее поле';
@@ -17,7 +16,7 @@ if (!empty($_POST)) {
     }
 
     if ((!$modalErrorMessages) && (isset($_POST['login']))) {
-        $userExist = "SELECT id, login, email, password FROM masterok_users WHERE login='$login' OR email='$login'";
+        $userExist = "SELECT id, login, email, password, type FROM masterok_users WHERE login='$login' OR email='$login'";
  
         $userExist = $db->query($userExist)->fetch();
         
@@ -28,6 +27,7 @@ if (!empty($_POST)) {
                 $_SESSION['timeout'] = time(604800);
                 $_SESSION['id'] = $userExist['id'];
                 $_SESSION['login'] = $userExist['login'];
+                $_SESSION['userType'] = $userExist['type'];
 
                 $modalSuccessMessages[] = "Вы успешно вошли!";
                 header('Refresh: 1; URL = index.php');
@@ -39,7 +39,10 @@ if (!empty($_POST)) {
         }
     }
 
+    (!$modalSuccessMessages) ? $modalSuccessMessages = null : $modalSuccessMessages = $modalSuccessMessages;
+
     $jsonData = ['errors' => $modalErrorMessages, 'success' => $modalSuccessMessages];
+    //echo var_dump($jsonData);
     header('Content-type: application/json');
     echo json_encode($jsonData, JSON_UNESCAPED_UNICODE);
     
