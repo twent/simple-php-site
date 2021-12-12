@@ -64,7 +64,7 @@ if (!empty($_POST)) {
         $result = $db->prepare($add_user)->execute();
         
         if ($result) {
-            $successMessage .= "<div class='alert alert-success'>Спасибо, $name, Мы получили Ваш запрос на регистрацию. <br>Проверьте Вашу почту. <br>Мы отправили письмо с ссылкой на подтверждение учётной записи :-)</div>";
+            $successMessage .= "<div class='alert alert-success'>Спасибо, $name, Мы получили Ваш запрос на регистрацию. <br>Теперь Вы можете войти на сайт, используя Выши данные.<br>Также мы отправили письмо с ссылкой на подтверждение учётной записи :-)</div>";
         } else {
             $errorMessage .= "<div class='alert alert-danger'>При отправке запроса на регистрацию произошла ошибка. Попробуйте позже.</div>";
         }
@@ -92,28 +92,28 @@ if (!empty($_POST)) {
                     <?php echo((!empty($errorMessage)) ? $errorMessage : '') ?>
                     <?php echo((!empty($successMessage)) ? $successMessage : '') ?>
                     <div class="col-xs-12 col-md-6 mb-3">
-                    <label for="" class="form-label">Имя:</label>
-                        <input class="form-control" type="text" name="name" placeholder="Имя" value="<?=$name?>" required>
+                        <label for="name" class="form-label">Имя:</label>
+                        <input class="form-control" type="text" name="name" placeholder="Имя" value="<?php $name?>" required>
                         <div class="form-text">Расскажите как Вас зовут</div>
                     </div>
                     <div class="col-xs-12 col-md-6 mb-3">
-                        <label for="" class="form-label">Фамилия:</label>
-                        <input class="form-control" type="text" name="lastname" placeholder="Фамилия" value="<?=$lastname?>" required>
+                        <label for="lastname" class="form-label">Фамилия:</label>
+                        <input class="form-control" type="text" name="lastname" placeholder="Фамилия" value="<?php $lastname?>" required>
                         <div class="form-text"></div>
                     </div>
                     <div class="col-xs-12 col-lg-4 mb-3">
                         <label for="" class="form-label">Логин:</label>
-                        <input class="form-control" type="text" name="login" value="<?=$login?>" required>
+                        <input class="form-control" type="text" name="login" value="<?php $login?>" required>
                         <div class="form-text">Ваше короткое имя на сайте (латинские буквы)</div>
                     </div>
                     <div class="col-xs-12 col-lg-4 mb-3">
                         <label for="" class="form-label">Email-адрес:</label>
-                        <input class="form-control" type="email" name="email" placeholder="email@mail.ru" value="<?=$email?>" required>
+                        <input class="form-control" type="email" name="email" placeholder="email@mail.ru" value="<?php $email?>" required>
                         <div class="form-text">На этот адрес мы пришлём письмо с потверждением регистрации</div>
                     </div>
                     <div class="col-xs-12 col-lg-4 mb-3">
                         <label for="" class="form-label">Дата рождения:</label>
-                        <input class="form-control" type="date" name="birth_date" value="<?=$birth_date?>">
+                        <input class="form-control" type="date" name="birth_date" value="<?php $birth_date?>">
                         <div class="form-text">Выберите Вашу дату рождения</div>
                     </div>
                     <div class="col-xs-12 col-md-6 mb-3">

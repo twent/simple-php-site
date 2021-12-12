@@ -2,7 +2,8 @@
 
 $tickets = "SELECT t.*, u.name as author
             FROM masterok_tickets t 
-            LEFT JOIN masterok_users u ON t.user_id = u.id LIMIT 25";
+            LEFT JOIN masterok_users u ON t.user_id = u.id 
+            ORDER BY created_at DESC LIMIT 25";
 
 $tickets = $db->query($tickets)->fetchAll();
 

@@ -41,7 +41,7 @@
 
 </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-<script src="../scripts/script.js"></script>
+<script src="../scripts/bootstrap.bundle.min.js"></script>
+<script src="../scripts/after_auth.js"></script>
 </body>
 </html>

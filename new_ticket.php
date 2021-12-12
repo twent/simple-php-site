@@ -1,11 +1,15 @@
 <?php require_once 'modules/header.php';
 
+if (!$_SESSION['auth']) {
+    header('Location: index.php');
+}
+
 $errors = [];
 $errorMessage = '';
 $successMessage = '';
 
 if (!empty($_POST)) {
-    $user_id = '18';
+    $user_id = $_SESSION['id'];
     $title = trim($_POST['title']);
     $text = trim($_POST['text']);
     $address = trim($_POST['address']);
@@ -57,7 +61,7 @@ if (!empty($_POST)) {
                     $_SERVER["DOCUMENT_ROOT"].'/upload/'.$name
                 )) {
                     $nameUploadedPhoto = '/upload/'.$name;
-                    //$successMessage .= "<div class='alert alert-success'>Файл $name сохранён :-) <br></div>";
+                    $successMessage .= "<div class='alert alert-success'>Файл $name сохранён :-) <br></div>";
                 } else {
                     $errors[] = "Не удалось преместить загруженный файл $name<br>";
                 }
@@ -69,8 +73,9 @@ if (!empty($_POST)) {
 
         $add_ticket = "INSERT INTO masterok_tickets (user_id, title, text, category, photo_before, max_price, address) 
                         VALUES ('$user_id', '$title', '$text', '$category', '$nameUploadedPhoto', '$max_price', '$address')";
-        
-        $result = $db->prepare($add_ticket)->execute();
+        //echo $add_ticket;
+        $result = $db->query($add_ticket);
+
         
         if ($result) {
             $successMessage .= "<div class='alert alert-success'>Спасибо, Мы получили Вашу заявку :-)<br>В ближайшее время мы обработаем её и свяжемся с Вами</div>";

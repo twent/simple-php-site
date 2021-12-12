@@ -1,11 +1,11 @@
 <?php require_once 'modules/header.php';
 
-if (!$_SESSION['auth']) {
+if ((!$_SESSION['auth'] )|| ($_SESSION['userType'] !== 'admin')) {
     header('Location: index.php');
 }
 
-$errorMessages = '';
-$successMessages = '';
+$errorMessage = '';
+$successMessage = '';
 
 $id = $_REQUEST['id'];
 
@@ -17,15 +17,12 @@ if (!empty($_POST)) {
     $status = trim($_POST['status']);
     (!empty($_POST['price'])) ? $price = trim($_POST['price']) : $price = 0;
     $pictures = $_FILES['photo_after'];
-
-    //echo '<pre>'.var_dump($_POST).'</pre>';
     
     if (isset($_POST['updateTicket'])) {
 
         $update_ticket = "UPDATE masterok_tickets 
-            SET status = '$status', title = '$title', text = '$text', category = '$category', photo_after = '$nameUploadedPhoto', price = '$price', address = '$address'
+            SET status = $status, title = '$title', text = '$text', category = $category/*, photo_after = '$nameUploadedPhoto'*/, price = '$price', address = '$address'
             WHERE id = $id";
-        //echo '<pre>'.var_dump($update_ticket).'</pre>';
         
         $result = $db->prepare($update_ticket)->execute();
             
@@ -51,7 +48,7 @@ $ticket = $db->query($ticket)->fetch();
             <h1 class="mb-4  display-5">Редактирование заявки</h1>
             <nav aria-label="breadcrumb" class="mb-4">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="/">Главная</a></li>
+                    <li class="breadcrumb-item"><a href="/master">Панель управления</a></li>
                     <li class="breadcrumb-item"><a href="tickets.php">Заявки</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Заявка <?=$ticket['title']?></li>
                 </ol>
@@ -113,11 +110,16 @@ $ticket = $db->query($ticket)->fetch();
                             <label class="mb-3" for="">Фото до ремонта</label>
                             <img src="<?=$ticket['photo_before']?>" class="rounded" alt="" width="350px">
                         </div>
+                        <?php if ($ticket['photo_before'] !== '') : ?><div class="col-12 mb-3 d-flex flex-column">
+                            <label class="mb-3" for="">Фото после ремонта уже загружено</label>
+                            <img src="<?=$ticket['photo_after']?>" class="rounded" alt="" width="350px"></div>
+                        <?php else : ?>
                         <div class="col-sm-12 mb-3">
                             <label class="form-label" for="">Фото после ремонта</label>
                             <input class="form-control" name="photo_after[]" type="file" accept=".jpg, .jpeg, .png, .bmp" multiple>
                             <div class="form-text">Прикрепите фотографию помещения (объекта) после ремонта</div>
                         </div>
+                        <?php endif; ?>
                         <button class="btn btn-success mt-3" type="submit" name="updateTicket">Сохранить изменения</button>
                 </form>
             </div>
@@ -125,4 +127,4 @@ $ticket = $db->query($ticket)->fetch();
     </div>
 </main>
 
-<?php require_once 'modules/footer.php';
+<?php require_once 'modules/footer_auth.php';
